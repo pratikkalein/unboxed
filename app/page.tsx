@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Container from "../app/components/Container";
-import HomeBanner from "./components/HomeBanner";
+import Container from "../components/Container";
+import HomeBanner from "../components/HomeBanner";
 import { Product } from "./interface/interface";
-import ProductCard from "./components/product/ProductCard";
+import ProductCard from "../components/product/ProductCard";
 
 
 export default function Home() {
-  //make a usestat of prducts and type it as Product[]
+
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?limit=6")
