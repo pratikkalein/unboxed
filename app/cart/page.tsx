@@ -19,7 +19,6 @@ const Cart = () => {
         {products && (
             <CartClient  products={products}/>
         )}
-        
       </Container>
     </div>
   );

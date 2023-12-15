@@ -8,7 +8,7 @@ import {AiFillTwitterCircle, AiFillInstagram, AiFillYoutube} from "react-icons/a
 
 const Footer = () => {
   return (
-    <footer className="mt-16 text-sm bg-slate-700 text-slate-200">
+    <footer className="mt-16 text-sm bg-violet-700 text-slate-200">
       <Container>
         <div className="flex flex-col justify-between pt-16 pb-8 md:flex-row">
           <FooterList>
@@ -27,6 +27,15 @@ const Footer = () => {
             <Link href={"#"}>Returns & Exchange</Link>
             <Link href={"# "}>FAQ</Link>
           </FooterList>
+          <FooterList>
+          <h3 className="text-base font-bold">Follow Us</h3>
+          <div className="flex gap-2">
+            <Link href={"#"}><MdFacebook size={24}/></Link>
+            <Link href={"#"}><AiFillTwitterCircle size={24}/></Link>
+            <Link href={"#"}><AiFillInstagram size={24}/></Link>
+            <Link href={"#"}><AiFillYoutube size={24}/></Link>
+          </div>
+          </FooterList>
           <div className="w-full mb-6 md:w-1/3 md:mb-0">
             <h3 className="text-base font-bold">About Us</h3>
             <p className="mb-2">
@@ -38,16 +47,6 @@ const Footer = () => {
             </p>
             <p>&copy; {new Date().getFullYear()} Unboxed. All rights reserved</p>
           </div>
-          <FooterList>
-          <h3 className="text-base font-bold">Follow Us</h3>
-          <div className="flex gap-2">
-            <Link href={"#"}><MdFacebook size={24}/></Link>
-            <Link href={"#"}><AiFillTwitterCircle size={24}/></Link>
-            <Link href={"#"}><AiFillInstagram size={24}/></Link>
-            <Link href={"#"}><AiFillYoutube size={24}/></Link>
-            
-          </div>
-          </FooterList>
         </div>
       </Container>
     </footer>

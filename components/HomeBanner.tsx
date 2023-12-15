@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const HomeBanner = () => {
     return ( <div>
-        <div className="relative mb-8 bg-gradient-to-r from-sky-500 to-sky-700">
+        <div className="relative mb-8 rounded-md bg-gradient-to-r from-violet-500 to-violet-700">
             <div className="flex flex-col items-center gap-2 px-8 py-12 mx-auto md:flex-row justify-evenly">
             <div className="mb-8 text-center md:mb-0">
                 <h1 className="mb-4 text-4xl font-bold text-white md:text-6xl">Summer Sale</h1>
