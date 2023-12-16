@@ -16,7 +16,7 @@ const ProductCard = ({ data }: Props) => {
   return (
     <div 
     onClick={() => router.push(`/product/${data.id}`)}
-    className="col-span-1 border-[1.2px] border-slate-300 rounded-md bg-white cursor-pointer p-2 transition hover:scale-105 text-center text-sm">
+    className="col-span-1 border-[1.2px] border-slate-300 rounded-md bg-white cursor-pointer p-2 transition hover:scale-105 h-full text-center text-sm">
       <div className="flex flex-col items-center w-full gap-1">
         <div className="relative w-full overflow-auto aspect-square">
           <Image 
@@ -30,7 +30,7 @@ const ProductCard = ({ data }: Props) => {
         </div>
         <div><Rating value={data.rating.rate} readOnly/></div>
         <div>{data.rating.count} Reviews</div>
-        <div className="font-semibold">${data.price}</div>
+        <div className="text-base font-semibold">${data.price}</div>
       </div>
     </div>
 

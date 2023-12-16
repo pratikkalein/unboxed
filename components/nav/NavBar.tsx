@@ -9,7 +9,6 @@ const NavBar = () => {
         <Container>
             <div className="flex items-center justify-between gap-3 md:gap-0">
                 <Link href="/" className="text-2xl font-bold text-white">Unboxed</Link>
-                <div className="hidden md:block">Search</div>
                 <div className="flex items-center gap-8 md:gap-12">
                     <Link className="text-white" href={"/cart"}><FaShoppingCart size={25} /></Link>
                     <div className="flex items-center justify-center text-white"><FaUserCircle size={25}/> &nbsp; &nbsp;Pratik Kale</div>

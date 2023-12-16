@@ -30,7 +30,7 @@ const CartClient: React.FC<Props> = ({ products }) => {
       </div>
       <div className="border-t-[1.5px] border-slate-200 py-4 flex justify-between gap-4">
         <div>
-          <button className="max-w-xs px-4 py-2 mt-2 font-semibold border-2 rounded-md border-slate-800 text-slate-700">
+          <button className="max-w-xs px-4 py-1 mt-2 text-sm font-semibold border-2 rounded-md border-violet-700 text-violet-700">
             Clear Cart
           </button>
         </div>
@@ -42,7 +42,7 @@ const CartClient: React.FC<Props> = ({ products }) => {
           <p className="text-slate-500">
             Taxes and shipping calculate at checkout
           </p>
-          <button className="w-full px-4 py-2 mt-2 font-semibold text-white rounded-md bg-slate-700">
+          <button className="w-full px-4 py-2 mt-2 font-semibold text-white rounded-md bg-violet-700">
             Checkout
           </button>
           <Link href="/"

@@ -29,15 +29,14 @@ const AllProducts = () => {
     fetch(apiUrl)
       .then((res) => res.json())
       .then((json) => {
-        // Filter products based on selected rating
+    
         const filteredProducts = json.filter((product: Product) => {
           if (rating) {
             return product.rating.rate >= parseInt(rating, 10);
           }
-          return true; // Include all products if no rating is selected
+          return true; 
         });
 
-        // Sort products based on selected price
         if (price === "highLow") {
           filteredProducts.sort((a: Product, b: Product) => b.price - a.price);
         } else if (price === "lowHigh") {
@@ -71,7 +70,7 @@ const AllProducts = () => {
   return (
     <div>
       <Container>
-        <div className="sticky z-30 grid grid-cols-2 gap-3 px-2 py-4 mt-6 bg-white border rounded-md md:grid-cols-4 md:p-4 md:gap-20 top-16 border-slate-300">
+        <div className="sticky z-30 grid grid-cols-3 gap-3 px-2 py-4 mt-6 bg-white border rounded-md md:p-4 md:gap-20 top-16 border-slate-300">
           <div>
             <FormControl variant="standard" fullWidth>
               <InputLabel className="text-xs md:text-base" id="product-category-label">Sort by Categories</InputLabel>
@@ -92,7 +91,7 @@ const AllProducts = () => {
 
           <div>
             <FormControl variant="standard" fullWidth>
-              <InputLabel id="product-reviews-label">Sort by Reviews</InputLabel>
+              <InputLabel className="text-xs md:text-base" id="product-reviews-label">Sort by Reviews</InputLabel>
               <Select
                 labelId="product-reviews-label"
                 id="product-reviews"
@@ -110,7 +109,7 @@ const AllProducts = () => {
 
           <div>
           <FormControl variant="standard" fullWidth>
-              <InputLabel id="product-price-label">Sort by Price</InputLabel>
+              <InputLabel className="text-xs md:text-base" id="product-price-label">Sort by Price</InputLabel>
               <Select
                 labelId="product-price-label"
                 id="product-price"
@@ -123,7 +122,9 @@ const AllProducts = () => {
               </Select>
             </FormControl>
           </div>
-          <button onClick={handleClearFilters} className="px-4 py-2 text-white rounded-md bg-violet-700" >
+        </div>
+        <div className="text-center">
+        <button onClick={handleClearFilters} className="px-4 py-1 mt-2 text-sm text-white rounded-sm bg-violet-700" >
               Clear
             </button>
         </div>

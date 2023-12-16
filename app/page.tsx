@@ -12,8 +12,9 @@ import { MdArrowForward } from "react-icons/md";
 export default function Home() {
 
   const [products, setProducts] = useState<Product[]>([]);
+  const apiUrl = "https://fakestoreapi.com/products?limit=6";
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=6")
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((json) => {
         setProducts(json);  

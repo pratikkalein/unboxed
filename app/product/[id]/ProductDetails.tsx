@@ -21,11 +21,15 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
   const handleQtyIncrease = () => {
     if (quantity < 10) {
       setQuantity(quantity + 1);
+    } else if (quantity === 10) {
+      toast.error("Can't add more than 10 items")
     }
   };
   const handleQtyDecrease = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+    } else if (quantity === 1) {
+      toast.error("At least one item required")
     }
   };
   const [buttonText, setButtonText] = useState("Add To Cart");
@@ -79,12 +83,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
           </div>
         </div>
         <Horizontal />
+
         <button
           onClick={handleClick}
-          className={`max-w-xs px-4 py-2 mt-2 font-semibold text-white rounded-md font ${
+          className={`max-w-xs px-4 py-2 mt-2 font-semibold text-white rounded-md  ${
             buttonText === "Added To Cart"
-              ? "bg-none border-2 border-slate-800 text-black"
-              : "bg-slate-700"
+              ? "border-2 text-violet-700 border-violet-700 "
+              : "bg-violet-700"
           }`}
         >
           {buttonText}
