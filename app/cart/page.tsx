@@ -7,7 +7,8 @@ import { Product } from "../interface/interface";
 const Cart = () => {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=2")
+    let apiUrl = "https://fakestoreapi.com/products?limit=2";
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((json) => {
         setProducts(json);

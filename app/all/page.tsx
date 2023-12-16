@@ -10,47 +10,77 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  Rating,
 } from "@mui/material";
 
 const AllProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [category, setCategory] = useState("");
+  const [rating, setRating] = useState("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    let apiUrl = "https://fakestoreapi.com/products";
+
+    if (category) {
+      apiUrl = `https://fakestoreapi.com/products/category/${category}`;
+    }
+
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((json) => {
-        setProducts(json);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (category) {
-      fetch("https://fakestoreapi.com/products/category/" + category)
-        .then((res) => res.json())
-        .then((json) => {
-          setProducts(json);
+        // Filter products based on selected rating
+        const filteredProducts = json.filter((product: Product) => {
+          if (rating) {
+            return product.rating.rate >= parseInt(rating, 10);
+          }
+          return true; // Include all products if no rating is selected
         });
-    }
-  }, [category]);
 
-  const handleChange = (event: SelectChangeEvent) => {
+        // Sort products based on selected price
+        if (price === "highLow") {
+          filteredProducts.sort((a: Product, b: Product) => b.price - a.price);
+        } else if (price === "lowHigh") {
+          filteredProducts.sort((a: Product, b: Product) => a.price - b.price);
+        }
+
+        setProducts(filteredProducts);
+      });
+  }, [category, rating, price]);
+
+
+  const handleCategoryChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
   };
+
+  const handleReviewChange = (event: SelectChangeEvent) => {
+    setRating(event.target.value as string);
+  };
+
+  const handlePriceChange = (event: SelectChangeEvent) => {
+    setPrice(event.target.value as string);
+  };
+
+  const handleClearFilters = () => {
+    setCategory("");
+    setRating("");
+    setPrice("");
+  };
+
 
   return (
     <div>
       <Container>
-        <div className="sticky z-30 grid grid-cols-3 gap-3 px-2 py-4 mt-6 bg-white border rounded-md md:p-4 md:gap-20 top-16 border-slate-200">
+        <div className="sticky z-30 grid grid-cols-2 gap-3 px-2 py-4 mt-6 bg-white border rounded-md md:grid-cols-4 md:p-4 md:gap-20 top-16 border-slate-300">
           <div>
-            <FormControl fullWidth>
-              <InputLabel id="product-category-label">Categories</InputLabel>
+            <FormControl variant="standard" fullWidth>
+              <InputLabel className="text-xs md:text-base" id="product-category-label">Sort by Categories</InputLabel>
               <Select
                 labelId="product-category-label"
                 id="product-category"
                 value={category}
                 label="Category"
-                onChange={handleChange}
+                onChange={handleCategoryChange}
               >
                 <MenuItem value="men's clothing">Men&apos;s Clothing</MenuItem>
                 <MenuItem value="women's clothing">Women&apos;s Clothing</MenuItem>
@@ -61,41 +91,41 @@ const AllProducts = () => {
           </div>
 
           <div>
-            <label
-              htmlFor="sortByRating"
-              className="block mb-2 text-xs font-medium text-gray-900 md:text-sm"
-            >
-              Sory by Ratings
-            </label>
-            <select
-              id="sortByRating"
-              className="block w-full p-1 text-xs text-gray-900 border border-gray-300 rounded-lg md:text-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-            >
-              <option value="5">5</option>
-              <option value="4">4</option>
-              <option value="3">3</option>
-              <option value="2">2</option>
-              <option value="1">1</option>
-            </select>
+            <FormControl variant="standard" fullWidth>
+              <InputLabel id="product-reviews-label">Sort by Reviews</InputLabel>
+              <Select
+                labelId="product-reviews-label"
+                id="product-reviews"
+                value={rating}
+                label="rating"
+                onChange={handleReviewChange}
+              >
+                <MenuItem value={4}><Rating value={4} readOnly /></MenuItem>
+                <MenuItem value={3}><Rating value={3} readOnly /></MenuItem>
+                <MenuItem value={2}><Rating value={2} readOnly /></MenuItem>
+                <MenuItem value={1}><Rating value={1} readOnly /></MenuItem>
+              </Select>
+            </FormControl>
           </div>
 
           <div>
-            <label
-              htmlFor="sortByCategory"
-              className="block mb-2 text-xs font-medium text-gray-900 md:text-sm"
-            >
-              Sory by Ratings
-            </label>
-            <select
-              id="sortByCategory"
-              className="block w-full p-1 text-xs text-gray-900 border border-gray-300 rounded-lg md:text-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-            >
-              <option value="men's clothing">Men&apos;s Clothing</option>
-              <option value="women's clothing">Women&apos;s Clothing</option>
-              <option value="electronics">Electronics</option>
-              <option value="jewelery">Jewlery</option>
-            </select>
+          <FormControl variant="standard" fullWidth>
+              <InputLabel id="product-price-label">Sort by Price</InputLabel>
+              <Select
+                labelId="product-price-label"
+                id="product-price"
+                value={price}
+                label="price"
+                onChange={handlePriceChange}
+              >
+                <MenuItem value={"highLow"}>High to Low</MenuItem>
+                <MenuItem value={"lowHigh"}>Low to High</MenuItem>
+              </Select>
+            </FormControl>
           </div>
+          <button onClick={handleClearFilters} className="px-4 py-2 text-white rounded-md bg-violet-700" >
+              Clear
+            </button>
         </div>
         <div className="grid grid-cols-2 gap-8 mt-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {products.map((product: Product) => (
