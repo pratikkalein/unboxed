@@ -48,7 +48,7 @@ const AllProducts = () => {
       });
   }, [category, rating, price]);
 
-  const handleCategoryChange = (event: SelectChangeEvent) => {
+  function handleCategoryChange(event: SelectChangeEvent): void {
     setCategory(event.target.value as string);
   };
 
@@ -74,7 +74,7 @@ const AllProducts = () => {
             <div className="p-4">
               <h1 className="text-xl font-bold text-violet-700">Filters</h1>
               <div>
-                <FormControl variant="standard" fullWidth>
+                <FormControl size="small" className="mt-3"  fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
                     id="product-category-label"
@@ -100,7 +100,7 @@ const AllProducts = () => {
                 </FormControl>
               </div>
               <div>
-                <FormControl variant="standard" fullWidth>
+                <FormControl size="small" className="mt-3"fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
                     id="product-reviews-label"
@@ -130,7 +130,7 @@ const AllProducts = () => {
                 </FormControl>
               </div>
               <div>
-                <FormControl variant="standard" fullWidth>
+                <FormControl size="small" className="mt-3" fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
                     id="product-price-label"
