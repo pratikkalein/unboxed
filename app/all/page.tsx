@@ -69,7 +69,7 @@ const AllProducts = () => {
   return (
     <div>
       <Container >
-        <div className="sticky z-30 mt-1 bg-white rounded-md top-[4rem]">
+        {/* <div className="sticky z-30 mt-1 bg-white rounded-md top-[4rem]">
           <TemporaryDrawer>
             <div className="p-4">
               <h1 className="text-xl font-bold text-violet-700">Filters</h1>
@@ -159,14 +159,26 @@ const AllProducts = () => {
             </button>
           </div>
           </TemporaryDrawer>
+        </div> */}
+
+        <div className="grid grid-cols-4 gap-4 mt-8">
+          <div className="col-span-1 sticky h-screen p-4 bg-gray-100">Filters</div>
+           <div className="col-span-3 grid grid-cols-4 gap-8 md:grid-col-3">
+           {products.map((product: Product) => (
+            <div key={product.id}>
+              <ProductCard data={product} />
+            </div>
+          ))}
+            </div> 
         </div>
-        <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+
+        {/* <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {products.map((product: Product) => (
             <div key={product.id}>
               <ProductCard data={product} />
             </div>
           ))}
-        </div>
+        </div> */}
       </Container>
     </div>
   );
