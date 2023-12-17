@@ -50,7 +50,11 @@ const TemporaryDrawer: React.FC<TemporaryDrawerProps> = ({ children }) => {
     <div>
       {(['left'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className="mt-3 text-white normal-case bg-violet-700 hover:bg-violet-600" onClick={toggleDrawer(anchor, true)}>Filters</Button>
+            <div className="sticky z-30 mt-3">
+
+          <Button onClick={toggleDrawer(anchor, true)}>Filters</Button>
+
+            </div>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
