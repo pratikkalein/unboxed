@@ -69,7 +69,7 @@ const AllProducts = () => {
   return (
     <div>
       <Container >
-        {/* <div className="sticky z-30 mt-1 bg-white rounded-md top-[4rem]">
+        <div className="sticky z-30 mt-1 bg-white rounded-md top-[4rem] md:hidden">
           <TemporaryDrawer>
             <div className="p-4">
               <h1 className="text-xl font-bold text-violet-700">Filters</h1>
@@ -79,7 +79,7 @@ const AllProducts = () => {
                     className="text-xs md:text-base"
                     id="product-category-label"
                   >
-                    Sort by Categories
+                    Categories
                   </InputLabel>
                   <Select
                     labelId="product-category-label"
@@ -105,7 +105,7 @@ const AllProducts = () => {
                     className="text-xs md:text-base"
                     id="product-reviews-label"
                   >
-                    Sort by Reviews
+                    Reviews
                   </InputLabel>
                   <Select
                     labelId="product-reviews-label"
@@ -135,7 +135,7 @@ const AllProducts = () => {
                     className="text-xs md:text-base"
                     id="product-price-label"
                   >
-                    Sort by Price
+                    Price
                   </InputLabel>
                   <Select
                     labelId="product-price-label"
@@ -159,11 +159,101 @@ const AllProducts = () => {
             </button>
           </div>
           </TemporaryDrawer>
-        </div> */}
+        </div>
 
-        <div className="grid grid-cols-4 gap-4 mt-8">
-          <div className="col-span-1 sticky h-screen p-4 bg-gray-100">Filters</div>
-           <div className="col-span-3 grid grid-cols-4 gap-8 md:grid-col-3">
+        <div className="hidden grid-cols-4 gap-4 mt-8 md:grid">
+          <div className="relative hidden col-span-1 md:block">
+          <div className="sticky top-[6rem] p-4 bg-gray-100">
+          <div className="p-4">
+              <h1 className="text-xl font-bold text-violet-700">Filters</h1>
+              <div className="mt-4">
+                <FormControl size="small" fullWidth>
+                  <InputLabel
+                    className="text-xs md:text-base"
+                    id="product-category-label"
+                  >
+                    Categories
+                  </InputLabel>
+                  <Select
+                    labelId="product-category-label"
+                    id="product-category"
+                    value={category}
+                    label="Category"
+                    onChange={handleCategoryChange}
+                  >
+                    <MenuItem value="men's clothing">
+                      Men&apos;s Clothing
+                    </MenuItem>
+                    <MenuItem value="women's clothing">
+                      Women&apos;s Clothing
+                    </MenuItem>
+                    <MenuItem value="electronics">Electronics</MenuItem>
+                    <MenuItem value="jewelery">Jewlery</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="mt-4">
+                <FormControl size="small" fullWidth>
+                  <InputLabel
+                    className="text-xs md:text-base"
+                    id="product-reviews-label"
+                  >
+                    Reviews
+                  </InputLabel>
+                  <Select
+                    labelId="product-reviews-label"
+                    id="product-reviews"
+                    value={rating}
+                    label="rating"
+                    onChange={handleReviewChange}
+                  >
+                    <MenuItem value={4}>
+                      <Rating value={4} readOnly />
+                    </MenuItem>
+                    <MenuItem value={3}>
+                      <Rating value={3} readOnly />
+                    </MenuItem>
+                    <MenuItem value={2}>
+                      <Rating value={2} readOnly />
+                    </MenuItem>
+                    <MenuItem value={1}>
+                      <Rating value={1} readOnly />
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="mt-4">
+                <FormControl size="small" fullWidth>
+                  <InputLabel
+                    className="text-xs md:text-base"
+                    id="product-price-label"
+                  >
+                    Price
+                  </InputLabel>
+                  <Select
+                    labelId="product-price-label"
+                    id="product-price"
+                    value={price}
+                    label="price"
+                    onChange={handlePriceChange}
+                  >
+                    <MenuItem value={"highLow"}>High to Low</MenuItem>
+                    <MenuItem value={"lowHigh"}>Low to High</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+            </div>
+            <div className="text-center">
+            <button
+              onClick={handleClearFilters}
+              className="px-6 py-1 mt-2 text-base text-white rounded-md bg-violet-700"
+            >
+              Clear
+            </button>
+          </div>
+          </div>
+          </div>
+           <div className="grid grid-cols-2 col-span-3 gap-8 md:grid-cols-3 lg:grid-cols-4 md:grid-col-3">
            {products.map((product: Product) => (
             <div key={product.id}>
               <ProductCard data={product} />
@@ -172,13 +262,13 @@ const AllProducts = () => {
             </div> 
         </div>
 
-        {/* <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-8 mt-4 md:hidden">
           {products.map((product: Product) => (
             <div key={product.id}>
               <ProductCard data={product} />
             </div>
           ))}
-        </div> */}
+        </div>
       </Container>
     </div>
   );
