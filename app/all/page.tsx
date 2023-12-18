@@ -73,7 +73,7 @@ const AllProducts = () => {
           <TemporaryDrawer>
             <div className="p-4">
               <h1 className="text-xl font-bold text-violet-700">Filters</h1>
-              <div>
+              <div className="mt-4">
                 <FormControl size="small" className="mt-3"  fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
@@ -99,7 +99,7 @@ const AllProducts = () => {
                   </Select>
                 </FormControl>
               </div>
-              <div>
+              <div className="mt-4">
                 <FormControl size="small" className="mt-3"fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
@@ -129,7 +129,7 @@ const AllProducts = () => {
                   </Select>
                 </FormControl>
               </div>
-              <div>
+              <div className="mt-4">
                 <FormControl size="small" className="mt-3" fullWidth>
                   <InputLabel
                     className="text-xs md:text-base"
