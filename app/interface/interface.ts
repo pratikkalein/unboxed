@@ -4,7 +4,7 @@ export type Product = {
     image: string,
     price: number,
     description: string,
-    category?: string,
+    category: string,
     rating: {
         rate: number,
         count: number
